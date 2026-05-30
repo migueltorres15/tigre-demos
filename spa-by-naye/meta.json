@@ -1,0 +1,13 @@
+{
+  "id": "BCS-009",
+  "nombre": "Spa By Naye",
+  "tipo": "Spa/Masajes",
+  "ciudad": "San José del Cabo",
+  "telefono": "624 100 6315",
+  "rating": "5.0",
+  "maps_url": "https://www.google.com/maps/place/Spa+By+Naye/data=!4m7!3m6!1s0x86af5100134fa0e7:0xbe88940165f9f59b!8m2!3d23.0587157!4d-109.6930475!16s%2Fg%2F11n9nzgrgf!19sChIJ56BPEwBRr4YRm_X5ZQGUiL4?authuser=0&hl=es-419&rclk=1",
+  "instagram": "",
+  "port": 8009,
+  "slug": "spa-by-naye",
+  "fotos": []
+}

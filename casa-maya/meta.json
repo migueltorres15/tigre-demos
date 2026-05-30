@@ -1,0 +1,13 @@
+{
+  "id": "BCS-007",
+  "nombre": "Casa maya temazcal y terapias spa",
+  "tipo": "Spa/Masajes",
+  "ciudad": "San José del Cabo",
+  "telefono": "624 116 4672",
+  "rating": "4.8",
+  "maps_url": "https://www.google.com/maps/place/Casa+maya+temazcal+y+terapias+spa/data=!4m7!3m6!1s0x86af5bc7207d7817:0x6abaa1d8279baadc!8m2!3d23.1053065!4d-109.7319523!16s%2Fg%2F11t5x70c6j!19sChIJF3h9IMdbr4YR3KqbJ9ihumo?authuser=0&hl=es-419&rclk=1",
+  "instagram": "",
+  "port": 8007,
+  "slug": "casa-maya-temazcal-y-terapias-spa",
+  "fotos": []
+}
