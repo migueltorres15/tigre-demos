@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anuiti Masajes · San José del Cabo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --terra:      #B5724A;
+    --terra-dark: #8C5235;
+    --sage:       #7A8C6E;
+    --sage-light: #A8B89C;
+    --cream:      #FAF6F1;
+    --cream-dark: #F0E8DC;
+    --cream-mid:  #E5D8C8;
+    --text-dark:  #2C2018;
+    --text-mid:   #7A6650;
+    --white:      #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    line-height: 1.15;
+  }
+
+  /* ── NAV ──────────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 68px;
+    background: rgba(250,246,241,0.94);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(181,114,74,0.12);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 24px rgba(44,32,24,0.08); }
+
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--terra-dark);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  .nav-brand span { font-style: italic; font-weight: 300; color: var(--terra); }
+
+  .nav-links { display: flex; align-items: center; gap: 30px; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--terra); }
+
+  .nav-cta {
+    background: var(--terra);
+    color: #fff !important;
+    padding: 9px 22px;
+    border-radius: 40px;
+    font-weight: 500 !important;
+    letter-spacing: 0.04em !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--terra-dark) !important; }
+
+  .nav-hamburger { display: none; cursor: pointer; padding: 4px; }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--terra-dark); margin: 4px 0;
+    transition: transform 0.3s;
+  }
+
+  /* ── HERO ──────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1600&q=85&fit=crop') center/cover no-repeat;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, rgba(44,32,24,0.72) 0%, rgba(44,32,24,0.28) 60%, transparent 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 60px;
+    max-width: 700px;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage-light);
+    margin-bottom: 20px;
+  }
+  .hero-content h1 {
+    font-size: clamp(48px, 7vw, 78px);
+    color: #fff;
+    margin-bottom: 10px;
+    font-weight: 300;
+  }
+  .hero-content h1 em {
+    font-style: italic;
+    color: #E8C9A8;
+  }
+  .hero-content p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 36px;
+    max-width: 460px;
+  }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--terra);
+    color: #fff;
+    padding: 14px 30px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--terra-dark); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    color: #fff;
+    padding: 14px 30px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+    opacity: 0.6;
+  }
+  .hero-scroll span { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.7));
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:.4;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.2)} }
+
+  /* ── INTRO STRIP ───────────────────────────────────────── */
+  .intro-strip {
+    background: var(--terra);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  .intro-stat { text-align: center; }
+  .intro-stat strong {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: #fff;
+  }
+  .intro-stat span { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+
+  /* ── SECTION BASE ──────────────────────────────────────── */
+  section { padding: 90px 40px; }
+  .section-label {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-size: clamp(34px, 4vw, 52px);
+    color: var(--text-dark);
+    margin-bottom: 18px;
+  }
+  .section-title em { font-style: italic; color: var(--terra); }
+  .section-sub {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-mid);
+    max-width: 520px;
+  }
+  .centered { text-align: center; }
+  .centered .section-sub { margin: 0 auto; }
+
+  /* ── SERVICIOS ─────────────────────────────────────────── */
+  #servicios { background: var(--white); }
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 56px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .servicio-card {
+    background: var(--cream);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .servicio-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px rgba(44,32,24,0.1);
+  }
+  .servicio-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+  .servicio-body { padding: 24px; }
+  .servicio-body h3 {
+    font-size: 22px;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  .servicio-body p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--text-mid);
+    margin-bottom: 16px;
+  }
+  .servicio-tag {
+    display: inline-block;
+    background: var(--cream-dark);
+    color: var(--terra);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+
+  /* ── SOBRE NOSOTROS ────────────────────────────────────── */
+  #nosotros {
+    background: var(--cream);
+    padding: 90px 40px;
+  }
+  .nosotros-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .nosotros-img-wrap {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+  }
+  .nosotros-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .nosotros-badge {
+    position: absolute;
+    bottom: 24px;
+    right: -20px;
+    background: var(--terra);
+    color: #fff;
+    border-radius: 14px;
+    padding: 18px 24px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(181,114,74,0.35);
+  }
+  .nosotros-badge strong {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .nosotros-badge span { font-size: 11px; letter-spacing: 0.1em; opacity: 0.85; }
+  .nosotros-text .section-title { margin-bottom: 20px; }
+  .nosotros-text p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+  }
+  .nosotros-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .pillar {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .pillar-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .pillar-text strong { display: block; font-size: 13px; color: var(--text-dark); margin-bottom: 2px; }
+  .pillar-text span { font-size: 12px; color: var(--text-mid); line-height: 1.5; }
+
+  /* ── GALERÍA ───────────────────────────────────────────── */
+  #galeria { background: var(--cream-dark); }
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 240px 240px;
+    gap: 12px;
+    max-width: 1100px;
+    margin: 48px auto 0;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .galeria-item { overflow: hidden; position: relative; }
+  .galeria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .galeria-item:hover img { transform: scale(1.06); }
+  .galeria-item:first-child { grid-row: 1 / 3; }
+
+  /* ── TESTIMONIOS ───────────────────────────────────────── */
+  #testimonios { background: var(--white); }
+  .testimonios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .testimonio-card {
+    background: var(--cream);
+    border-radius: 14px;
+    padding: 28px;
+    position: relative;
+  }
+  .testimonio-stars { color: #E8A850; font-size: 15px; margin-bottom: 14px; letter-spacing: 2px; }
+  .testimonio-card p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+  }
+  .testimonio-autor { font-size: 13px; font-weight: 500; color: var(--terra); }
+
+  /* ── CONTACTO ──────────────────────────────────────────── */
+  #contacto { background: var(--cream); }
+  .contacto-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1000px;
+    margin: 48px auto 0;
+    align-items: start;
+  }
+  .contacto-info h3 {
+    font-size: 26px;
+    margin-bottom: 22px;
+    color: var(--text-dark);
+  }
+  .contacto-items { display: flex; flex-direction: column; gap: 16px; }
+  .contacto-item { display: flex; align-items: flex-start; gap: 14px; }
+  .contacto-item-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    flex-shrink: 0;
+  }
+  .contacto-item-text strong { display: block; font-size: 13px; color: var(--text-dark); margin-bottom: 3px; }
+  .contacto-item-text span { font-size: 13.5px; color: var(--text-mid); line-height: 1.5; }
+
+  .contacto-form { display: flex; flex-direction: column; gap: 14px; }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid var(--cream-mid);
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--text-dark);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--terra); }
+  .form-group textarea { height: 110px; }
+  .form-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--terra);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--terra-dark); }
+
+  /* ── FOOTER ────────────────────────────────────────────── */
+  footer {
+    background: var(--text-dark);
+    color: rgba(255,255,255,0.55);
+    padding: 40px;
+    text-align: center;
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .footer-brand em { font-style: italic; color: #E8C9A8; }
+  footer p { font-size: 13px; line-height: 1.7; }
+  .footer-links { margin-top: 16px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+  .footer-links a { color: rgba(255,255,255,0.45); font-size: 12px; text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: #E8C9A8; }
+
+  /* ── WHATSAPP FLOAT ────────────────────────────────────── */
+  .wa-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    width: 58px;
+    height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+  }
+  .wa-float:hover { transform: scale(1.08); box-shadow: 0 10px 32px rgba(37,211,102,0.55); }
+  .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+
+  /* ── RESPONSIVE ────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: block; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: var(--cream);
+      padding: 24px 20px;
+      gap: 16px;
+      border-bottom: 1px solid var(--cream-mid);
+    }
+    .hero-content { padding: 0 24px; }
+    .hero-content h1 { font-size: 42px; }
+    section { padding: 60px 20px; }
+    .nosotros-wrap { grid-template-columns: 1fr; gap: 36px; }
+    .nosotros-badge { right: 16px; }
+    .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .galeria-item:first-child { grid-row: auto; }
+    .contacto-wrap { grid-template-columns: 1fr; gap: 36px; }
+    .intro-strip { gap: 32px; padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-brand">Anuiti <em>Masajes</em></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#contacto" class="nav-cta">Reservar cita</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">San José del Cabo, BCS</span>
+    <h1>Masajes que<br><em>sanan el alma</em></h1>
+    <p>Terapias de bienestar personalizadas para restaurar tu equilibrio físico y mental. Atención 100% profesional en un ambiente cálido y relajante.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/526241602028?text=Hola%2C%20me%20gustaría%20reservar%20una%20cita%20en%20Anuiti%20Masajes" class="btn-primary" target="_blank">
+        📅 Reservar cita
+      </a>
+      <a href="#servicios" class="btn-outline">Ver servicios</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Descubrir</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <div class="intro-stat">
+    <strong>5+</strong>
+    <span>Años de experiencia</span>
+  </div>
+  <div class="intro-stat">
+    <strong>8</strong>
+    <span>Tipos de masaje</span>
+  </div>
+  <div class="intro-stat">
+    <strong>100%</strong>
+    <span>Satisfacción garantizada</span>
+  </div>
+  <div class="intro-stat">
+    <strong>Cita</strong>
+    <span>Mismo día disponible</span>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="centered">
+    <span class="section-label">Lo que ofrecemos</span>
+    <h2 class="section-title">Nuestros <em>Servicios</em></h2>
+    <p class="section-sub">Cada sesión es diseñada para ti. Escucha tu cuerpo y permítete descansar de verdad.</p>
+  </div>
+  <div class="servicios-grid">
+
+    <div class="servicio-card">
+      <img class="servicio-img"
+        src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80&fit=crop"
+        alt="Masaje Relajante" loading="lazy">
+      <div class="servicio-body">
+        <h3>Masaje Relajante</h3>
+        <p>Técnica sueca de movimientos largos y fluidos que libera la tensión muscular acumulada. Ideal para el estrés del día a día.</p>
+        <span class="servicio-tag">60 · 90 min</span>
+      </div>
+    </div>
+
+    <div class="servicio-card">
+      <img class="servicio-img"
+        src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80&fit=crop"
+        alt="Masaje con Piedras Calientes" loading="lazy">
+      <div class="servicio-body">
+        <h3>Piedras Calientes</h3>
+        <p>Basalto volcánico a temperatura terapéutica que descontractura tejidos profundos y activa la circulación. Una experiencia única.</p>
+        <span class="servicio-tag">90 min</span>
+      </div>
+    </div>
+
+    <div class="servicio-card">
+      <img class="servicio-img"
+        src="https://images.unsplash.com/photo-1591291621164-2c6367723315?w=600&q=80&fit=crop"
+        alt="Masaje Terapéutico" loading="lazy">
+      <div class="servicio-body">
+        <h3>Masaje Terapéutico</h3>
+        <p>Enfocado en zonas de dolor crónico y contracturas. Trabajo de tejido profundo para recuperación muscular real.</p>
+        <span class="servicio-tag">60 · 90 min</span>
+      </div>
+    </div>
+
+    <div class="servicio-card">
+      <img class="servicio-img"
+        src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80&fit=crop"
+        alt="Masaje Facial" loading="lazy">
+      <div class="servicio-body">
+        <h3>Masaje Facial</h3>
+        <p>Técnicas de drenaje linfático y presión en puntos clave del rostro. Reduce la tensión, mejora el tono y te devuelve el brillo.</p>
+        <span class="servicio-tag">45 min</span>
+      </div>
+    </div>
+
+    <div class="servicio-card">
+      <img class="servicio-img"
+        src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&q=80&fit=crop"
+        alt="Reflexología" loading="lazy">
+      <div class="servicio-body">
+        <h3>Reflexología</h3>
+        <p>Presión en puntos reflejos de pies y manos que corresponden a órganos internos. Equilibra tu sistema nervioso desde la raíz.</p>
+        <span class="servicio-tag">60 min</span>
+      </div>
+    </div>
+
+    <div class="servicio-card">
+      <img class="servicio-img"
+        src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80&fit=crop"
+        alt="Masaje Prenatal" loading="lazy">
+      <div class="servicio-body">
+        <h3>Masaje Prenatal</h3>
+        <p>Adaptado especialmente para mamás en gestación. Alivia el dolor de espalda, reduce la inflamación y favorece el descanso.</p>
+        <span class="servicio-tag">60 min</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SOBRE NOSOTROS -->
+<section id="nosotros">
+  <div class="nosotros-wrap">
+    <div class="nosotros-img-wrap">
+      <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&q=85&fit=crop" alt="Espacio Anuiti Masajes">
+      <div class="nosotros-badge">
+        <strong>★ 5.0</strong>
+        <span>Google Maps</span>
+      </div>
+    </div>
+    <div class="nosotros-text">
+      <span class="section-label">Nuestra historia</span>
+      <h2 class="section-title">Bienestar con <em>propósito</em></h2>
+      <p>Anuiti Masajes nació de la convicción de que el cuidado del cuerpo es una necesidad, no un lujo. Llevamos años ayudando a personas de San José del Cabo y Los Cabos a encontrar alivio, paz y equilibrio a través de terapias profesionales.</p>
+      <p>Cada sesión es personalizada. Escuchamos tu cuerpo antes de aplicar cualquier técnica, porque no hay dos personas iguales.</p>
+      <div class="nosotros-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">🌿</div>
+          <div class="pillar-text">
+            <strong>100% Natural</strong>
+            <span>Aceites y productos naturales sin químicos</span>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🏅</div>
+          <div class="pillar-text">
+            <strong>Certificadas</strong>
+            <span>Terapeutas con formación profesional</span>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🔒</div>
+          <div class="pillar-text">
+            <strong>Privacidad</strong>
+            <span>Ambiente íntimo y seguro siempre</span>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">📍</div>
+          <div class="pillar-text">
+            <strong>A domicilio</strong>
+            <span>También vamos a tu hotel o casa</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="centered">
+    <span class="section-label">Nuestro espacio</span>
+    <h2 class="section-title">Un lugar para <em>sanar</em></h2>
+  </div>
+  <div class="galeria-grid">
+    <div class="galeria-item">
+      <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800&q=80&fit=crop" alt="Sesión de masaje" loading="lazy">
+    </div>
+    <div class="galeria-item">
+      <img src="https://images.unsplash.com/photo-1510021115668-1b6dd74e02e8?w=500&q=80&fit=crop" alt="Ambiente spa" loading="lazy">
+    </div>
+    <div class="galeria-item">
+      <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=500&q=80&fit=crop" alt="Aceites esenciales" loading="lazy">
+    </div>
+    <div class="galeria-item">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&q=80&fit=crop" alt="Bienestar" loading="lazy">
+    </div>
+    <div class="galeria-item">
+      <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=500&q=80&fit=crop" alt="Piedras calientes" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="centered">
+    <span class="section-label">Lo que dicen</span>
+    <h2 class="section-title">Clientes <em>satisfechos</em></h2>
+  </div>
+  <div class="testimonios-grid">
+    <div class="testimonio-card">
+      <div class="testimonio-stars">★★★★★</div>
+      <p>"El mejor masaje que he recibido en Cabo. Alejandra tiene manos mágicas, siente exactamente dónde están las tensiones. Ya volví tres veces."</p>
+      <span class="testimonio-autor">— María G., San José del Cabo</span>
+    </div>
+    <div class="testimonio-card">
+      <div class="testimonio-stars">★★★★★</div>
+      <p>"Vine de vacaciones y fue lo mejor que hice. El masaje de piedras calientes fue una experiencia increíble. Muy recomendable, atención de primera."</p>
+      <span class="testimonio-autor">— Carlos M., Ciudad de México</span>
+    </div>
+    <div class="testimonio-card">
+      <div class="testimonio-stars">★★★★★</div>
+      <p>"Me llegaron a mi hotel, puntual y profesional. El masaje prenatal fue perfecto, me sentí segura y cómoda en todo momento. Gracias Anuiti."</p>
+      <span class="testimonio-autor">— Laura P., Turista</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="centered">
+    <span class="section-label">Agenda tu sesión</span>
+    <h2 class="section-title">¿Lista para <em>relajarte?</em></h2>
+    <p class="section-sub">Escríbenos por WhatsApp o llena el formulario. Respuesta inmediata.</p>
+  </div>
+  <div class="contacto-wrap">
+    <div class="contacto-info">
+      <h3>Información de contacto</h3>
+      <div class="contacto-items">
+        <div class="contacto-item">
+          <div class="contacto-item-icon">📍</div>
+          <div class="contacto-item-text">
+            <strong>Ubicación</strong>
+            <span>San José del Cabo, BCS<br>También servicio a domicilio y hoteles</span>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <div class="contacto-item-icon">📞</div>
+          <div class="contacto-item-text">
+            <strong>WhatsApp</strong>
+            <span>Lunes a Domingo · 9am – 8pm</span>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <div class="contacto-item-icon">🕐</div>
+          <div class="contacto-item-text">
+            <strong>Horario</strong>
+            <span>9:00 am – 8:00 pm<br>Citas disponibles mismo día</span>
+          </div>
+        </div>
+      </div>
+      <br>
+      <a href="https://wa.me/526241602028?text=Hola%2C%20quiero%20reservar%20una%20cita%20en%20Anuiti%20Masajes" class="btn-primary" target="_blank" style="display:inline-flex; margin-top:8px;">
+        💬 Escribir por WhatsApp
+      </a>
+    </div>
+    <form class="contacto-form" onsubmit="sendWA(event)">
+      <div class="form-group">
+        <input type="text" id="fname" placeholder="Tu nombre" required>
+      </div>
+      <div class="form-group">
+        <input type="tel" id="fphone" placeholder="Tu teléfono / WhatsApp">
+      </div>
+      <div class="form-group">
+        <textarea id="fmsg" placeholder="¿Qué servicio te interesa? ¿Tienes alguna condición especial?"></textarea>
+      </div>
+      <button type="submit" class="form-submit">
+        📅 Enviar por WhatsApp
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">Anuiti <em>Masajes</em></span>
+  <p>San José del Cabo, Baja California Sur · Atendemos hoteles y domicilio</p>
+  <div class="footer-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#galeria">Galería</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <p style="margin-top:20px; font-size:11px; opacity:0.35;">© 2025 Anuiti Masajes · Sitio web por Tigre Studio</p>
+</footer>
+
+<!-- WhatsApp Float -->
+<a class="wa-float" href="https://wa.me/526241602028?text=Hola%2C%20me%20gustaría%20información%20sobre%20Anuiti%20Masajes" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  // Form → WhatsApp
+  function sendWA(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('fname').value.trim();
+    const telefono = document.getElementById('fphone').value.trim();
+    const msg = document.getElementById('fmsg').value.trim();
+    const texto = `Hola, soy *${nombre}*${telefono ? ' ('+telefono+')' : ''}. Me gustaría reservar una cita en Anuiti Masajes.${msg ? '\n\n' + msg : ''}`;
+    window.open('https://wa.me/526241602028?text=' + encodeURIComponent(texto), '_blank');
+  }
+</script>
+</body>
+</html>
