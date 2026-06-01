@@ -220,6 +220,23 @@
   }
   @keyframes scrollPulse { 0%,100%{opacity:.4;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.2)} }
 
+  /* ── TAGLINE ───────────────────────────────────────────── */
+  .tagline-section {
+    background: var(--cream);
+    padding: 60px 40px;
+    text-align: center;
+  }
+  .tagline-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dark);
+    max-width: 760px;
+    margin: 0 auto;
+    letter-spacing: 0.01em;
+  }
+
   /* ── INTRO STRIP ───────────────────────────────────────── */
   .intro-strip {
     background: var(--terra);
@@ -600,7 +617,6 @@
     <div class="hero-text-wrap">
       <span class="hero-eyebrow">San José del Cabo, BCS</span>
       <h1>Masajes que<br><em>sanan el alma</em></h1>
-      <p>Terapias de bienestar personalizadas para restaurar tu equilibrio físico y mental. Atención 100% profesional en un ambiente cálido y relajante.</p>
       <div class="hero-btns">
         <a href="https://wa.me/526241602028?text=Hola%2C%20me%20gustaría%20reservar%20una%20cita%20en%20Anuiti%20Masajes" class="btn-primary" target="_blank">
           📅 Reservar cita
@@ -614,6 +630,11 @@
     <div class="scroll-line"></div>
   </div>
 </section>
+
+<!-- TAGLINE SECTION -->
+<div class="tagline-section">
+  <p class="tagline-text">Terapias de bienestar personalizadas para restaurar tu equilibrio físico y mental. Atención 100% profesional en un ambiente cálido y relajante.</p>
+</div>
 
 <!-- INTRO STRIP -->
 <div class="intro-strip">
