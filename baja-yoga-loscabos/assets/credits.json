@@ -1,0 +1,24 @@
+{
+  "services": {
+    "src": "assets/img/services.jpg",
+    "title": "Practice Yoga, Be Healthy! {EXPLORED}",
+    "creator": "VinothChandar",
+    "creator_url": "https://www.flickr.com/photos/44345361@N06",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/44345361@N06/4459777970",
+    "source": "flickr"
+  },
+  "gallery4": {
+    "src": "assets/img/gallery4.jpg",
+    "title": "Bent",
+    "creator": "Nicholas_T",
+    "creator_url": "https://www.flickr.com/photos/14922165@N00",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/14922165@N00/6039529961",
+    "source": "flickr"
+  }
+}

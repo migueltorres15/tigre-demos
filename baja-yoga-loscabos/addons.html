@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tigre Studio · Sitios Web · Lista de Precios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --olive: #4a5e1e; --olive-mid: #5c7226; --olive-lt: #8a9b52;
+      --cream: #f8f6f0; --cream-2: #f0ece2; --white: #fff;
+      --ink: #2a2a1e; --ink-2: #4a4a38; --ink-3: #8a8a72;
+      --line: rgba(74,94,30,0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--ink); line-height: 1.6; }
+    .page { max-width: 860px; margin: 0 auto; padding: 5rem 2.5rem; }
+    .brand { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: var(--olive-lt); margin-bottom: 3rem; }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 300; color: var(--olive); line-height: 1.1; margin-bottom: 0.75rem; }
+    h1 em { font-style: italic; font-weight: 400; }
+    .subtitle { font-size: 0.9rem; color: var(--ink-3); margin-bottom: 4rem; }
+    /* BASE */
+    .base-card {
+      background: var(--olive); color: var(--white);
+      border-radius: 4px; padding: 2.5rem 3rem;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .base-left h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: #fff; margin-bottom: 0.4rem; }
+    .base-left h2 em { font-style: italic; }
+    .base-left p { font-size: 0.85rem; color: rgba(255,255,255,0.65); max-width: 36ch; line-height: 1.7; }
+    .base-price { text-align: right; }
+    .base-price .amt { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 300; color: #fff; line-height: 1; }
+    .base-price .cur { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin-top: 0.25rem; }
+    .base-includes { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.15); }
+    .base-includes p { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 0.75rem; }
+    .includes-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .inc-tag { font-size: 0.78rem; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.2); border-radius: 100px; padding: 0.3rem 0.9rem; }
+    /* ADDONS */
+    .addons-label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--olive-lt); margin-bottom: 1.5rem; display: block; }
+    h3.section-h { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: var(--olive); margin-bottom: 1.5rem; letter-spacing: 0.01em; }
+    .addon-list { border-top: 1px solid var(--line); margin-bottom: 3rem; }
+    .addon-row {
+      display: flex; align-items: baseline; justify-content: space-between;
+      padding: 1.1rem 0; border-bottom: 1px solid var(--line);
+      gap: 2rem;
+    }
+    .addon-left { flex: 1; }
+    .addon-name { font-size: 0.95rem; color: var(--ink); font-weight: 500; margin-bottom: 0.2rem; }
+    .addon-desc { font-size: 0.8rem; color: var(--ink-3); line-height: 1.6; }
+    .addon-price { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--olive); white-space: nowrap; flex-shrink: 0; }
+    .addon-tag {
+      display: inline-block; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--olive-lt); color: var(--white); border-radius: 100px;
+      padding: 0.15rem 0.7rem; margin-left: 0.6rem; vertical-align: middle;
+    }
+    /* FOOTER */
+    .doc-footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .doc-footer p { font-size: 0.78rem; color: var(--ink-3); }
+    .doc-footer a { color: var(--olive); }
+    @media print {
+      body { background: white; }
+      .page { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <p class="brand">Tigre Studio · Sitios Web Express</p>
+  <h1>Lista de<br><em>Precios 2025.</em></h1>
+  <p class="subtitle">Todos los precios en MXN · No incluyen IVA · Vigencia 2025</p>
+
+  <!-- BASE -->
+  <div class="base-card">
+    <div class="base-left">
+      <h2>Sitio Web<br><em>Completo.</em></h2>
+      <p>Landing page profesional con diseño premium, mobile-first, optimizado para búsquedas locales y listo para atraer clientes desde el día uno.</p>
+      <div class="base-includes">
+        <p>Incluye</p>
+        <div class="includes-list">
+          <span class="inc-tag">Diseño personalizado</span>
+          <span class="inc-tag">Mobile + Desktop</span>
+          <span class="inc-tag">Botón WhatsApp</span>
+          <span class="inc-tag">Formulario de contacto</span>
+          <span class="inc-tag">Galería de fotos</span>
+          <span class="inc-tag">Sección de servicios</span>
+          <span class="inc-tag">Link .netlify.app</span>
+          <span class="inc-tag">Entrega en 24–48 hrs</span>
+        </div>
+      </div>
+    </div>
+    <div class="base-price">
+      <div class="amt">$2,500</div>
+      <div class="cur">MXN</div>
+    </div>
+  </div>
+
+  <!-- ADDONS TÉCNICOS -->
+  <span class="addons-label">Add-ons</span>
+  <h3 class="section-h">Servicios adicionales</h3>
+  <div class="addon-list">
+
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">Conexión de dominio propio</p>
+        <p class="addon-desc">Conectamos tu dominio (.com / .mx / .co) al sitio. No incluye compra del dominio.</p>
+      </div>
+      <span class="addon-price">$400</span>
+    </div>
+
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">Segunda ronda de cambios</p>
+        <p class="addon-desc">Revisión profunda de copy, fotos, colores y estructura. Incluye hasta 10 cambios.</p>
+      </div>
+      <span class="addon-price">$500</span>
+    </div>
+
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">Versión en inglés</p>
+        <p class="addon-desc">Traducción y adaptación del sitio completo al inglés para atraer turismo internacional.</p>
+      </div>
+      <span class="addon-price">$1,200</span>
+    </div>
+
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">Google My Business optimizado</p>
+        <p class="addon-desc">Configuración y optimización de tu perfil de Google Maps. Fotos, horarios, descripción y categorías.</p>
+      </div>
+      <span class="addon-price">$800</span>
+    </div>
+
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">WhatsApp Business setup</p>
+        <p class="addon-desc">Catálogo de servicios, respuestas automáticas y configuración profesional del perfil.</p>
+      </div>
+      <span class="addon-price">$700</span>
+    </div>
+
+  </div>
+
+  <!-- SISTEMA DE RESERVAS -->
+  <h3 class="section-h">Sistema de Reservas <span class="addon-tag">Upsell</span></h3>
+  <div class="addon-list">
+
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">Opción A — Reserva por WhatsApp <span class="addon-tag">Incluido</span></p>
+        <p class="addon-desc">Botón de reserva directo a WhatsApp del negocio. El cliente escribe y el estudio responde con disponibilidad, horarios o lo que tenga. Sin calendario visible. Incluido en todos los paquetes.</p>
+      </div>
+      <span class="addon-price">Gratis</span>
+    </div>
+
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">Opción B — Horarios desde Google Sheets <span class="addon-tag">Popular</span></p>
+        <p class="addon-desc">El negocio actualiza sus horarios en una hoja de Google Sheets. El sitio los muestra automáticamente. El cliente ve la clase, el maestro y el horario — y reserva por WhatsApp. Sin intermediarios, sin llamarle al desarrollador.</p>
+      </div>
+      <span class="addon-price">$700</span>
+    </div>
+
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">Opción C — Calendly en tiempo real</p>
+        <p class="addon-desc">Integración completa con Calendly. El estudio habilita y deshabilita horarios desde su app. El sitio se actualiza en tiempo real. El cliente reserva directamente en el website sin salir. Genera base de datos de reservas. El negocio es 100% autónomo.</p>
+      </div>
+      <span class="addon-price">$1,600</span>
+    </div>
+
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">Newsletter / Lista de correo</p>
+        <p class="addon-desc">Formulario de suscripción integrado al sitio con envío automático de novedades, calendario mensual y eventos. Conectado a Mailchimp o similar.</p>
+      </div>
+      <span class="addon-price">$1,200</span>
+    </div>
+
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">Mantenimiento anual <span class="addon-tag">Recurrente</span></p>
+        <p class="addon-desc">Actualizaciones ilimitadas de contenido durante 12 meses. Cambios de fotos, texto, eventos, horarios, precios. Respuesta en 24 hrs.</p>
+      </div>
+      <span class="addon-price">$4,800 / año</span>
+    </div>
+
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">Sesión fotográfica profesional</p>
+        <p class="addon-desc">Sesión de fotografía profesional para el negocio. Fotos de espacio, equipo, servicios y contenido para redes. Entrega de galería editada.</p>
+      </div>
+      <span class="addon-price">Desde $3,000</span>
+    </div>
+
+  </div>
+
+  <div class="doc-footer">
+    <p>Tigre Studio · San José del Cabo, BCS · <a href="https://tigrestudio.mx">tigrestudio.mx</a></p>
+    <p>Precios en MXN · No incluyen IVA · 2025</p>
+  </div>
+
+</div>
+</body>
+</html>
