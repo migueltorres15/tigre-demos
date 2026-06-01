@@ -1,0 +1,24 @@
+{
+  "facial-new": {
+    "src": "assets/img/facial-new.jpg",
+    "title": "Tara Spa",
+    "creator": "Tara Angkor Hotel",
+    "creator_url": "https://www.flickr.com/photos/47808661@N07",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/47808661@N07/5918124637",
+    "source": "flickr"
+  },
+  "ayurveda-new": {
+    "src": "assets/img/ayurveda-new.jpg",
+    "title": "Kerala Ayurveda Homestay, Travel Ashtamudi",
+    "creator": "peterwurst44",
+    "creator_url": "https://www.flickr.com/photos/27823732@N05",
+    "license": "by-sa",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/27823732@N05/5723404548",
+    "source": "flickr"
+  }
+}
