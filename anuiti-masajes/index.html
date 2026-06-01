@@ -10,15 +10,15 @@
 
 <style>
   :root {
-    --terra:      #B5724A;
-    --terra-dark: #8C5235;
-    --sage:       #7A8C6E;
-    --sage-light: #A8B89C;
-    --cream:      #FAF6F1;
-    --cream-dark: #F0E8DC;
-    --cream-mid:  #E5D8C8;
-    --text-dark:  #2C2018;
-    --text-mid:   #7A6650;
+    --terra:      #1ABFCD;
+    --terra-dark: #0D9BAA;
+    --sage:       #8B45C8;
+    --sage-light: #C4A8E8;
+    --cream:      #FFFFFF;
+    --cream-dark: #F0F8FA;
+    --cream-mid:  #E0F2F5;
+    --text-dark:  #0D2D3A;
+    --text-mid:   #3A6070;
     --white:      #FFFFFF;
   }
 
@@ -100,6 +100,7 @@
     min-height: 640px;
     display: flex;
     align-items: center;
+    justify-content: center;
     overflow: hidden;
   }
   .hero-img {
@@ -115,17 +116,18 @@
   .hero-content {
     position: relative;
     z-index: 2;
-    padding: 0 40px;
+    padding: 80px 40px 40px;
     max-width: 760px;
     text-align: center;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 0;
   }
   .hero-logo {
-    width: clamp(180px, 32vw, 320px);
-    margin-bottom: 28px;
+    width: clamp(160px, 26vw, 260px);
+    margin-bottom: 16px;
     animation: heroLogoFade 2.8s ease-in-out forwards;
     opacity: 0;
   }
