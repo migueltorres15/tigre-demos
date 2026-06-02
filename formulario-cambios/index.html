@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solicitud de Cambios · Tigre Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper:  #F5F4F0;
+    --bone:   #E4E2DA;
+    --ink:    #1F2625;
+    --ink2:   #2F3837;
+    --muted:  #7A8A86;
+    --amber:  #C26B4F;
+    --amber2: #D88F75;
+    --white:  #ffffff;
+    --error:  #B94040;
+  }
+
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--ink);
+    padding: 0 24px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .wordmark {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    color: var(--paper);
+  }
+  .wordmark span { color: var(--amber); }
+  .nav-tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── HERO BAND ── */
+  .hero-band {
+    background: var(--amber);
+    padding: 28px 24px 24px;
+    text-align: center;
+  }
+  .hero-band h1 {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  .hero-band p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--bone);
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+    border: 1px solid var(--bone);
+  }
+
+  /* ── FORM FIELDS ── */
+  .field { margin-bottom: 20px; }
+  .field:last-child { margin-bottom: 0; }
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink2);
+    margin-bottom: 7px;
+  }
+  label .req { color: var(--amber); margin-left: 2px; }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="url"],
+  select,
+  textarea {
+    width: 100%;
+    background: var(--paper);
+    border: 1.5px solid var(--bone);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    transition: border-color 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--amber);
+    background: var(--white);
+  }
+  textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+  ::placeholder { color: var(--muted); }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
+
+  /* ── CHECKBOXES ── */
+  .check-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  @media (max-width: 400px) { .check-grid { grid-template-columns: 1fr; } }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--paper);
+    border: 1.5px solid var(--bone);
+    border-radius: 8px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    font-size: 13px;
+    color: var(--ink2);
+    user-select: none;
+  }
+  .check-item:hover { border-color: var(--amber2); }
+  .check-item input[type="checkbox"] { display: none; }
+  .check-item .box {
+    width: 16px; height: 16px;
+    border: 2px solid var(--bone);
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .check-item input:checked ~ .box {
+    background: var(--amber);
+    border-color: var(--amber);
+  }
+  .check-item input:checked ~ .box::after {
+    content: '';
+    width: 4px; height: 7px;
+    border: 2px solid white;
+    border-top: none; border-left: none;
+    transform: rotate(45deg) translate(-1px, -1px);
+    display: block;
+  }
+
+  /* ── PHOTO UPLOAD ── */
+  .drop-zone {
+    border: 2px dashed var(--bone);
+    border-radius: 10px;
+    padding: 32px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+  .drop-zone:hover, .drop-zone.drag-over {
+    border-color: var(--amber);
+    background: rgba(194,107,79,0.04);
+  }
+  .drop-zone input[type="file"] {
+    position: absolute; inset: 0;
+    opacity: 0; cursor: pointer; width: 100%; height: 100%;
+  }
+  .drop-icon { font-size: 32px; margin-bottom: 10px; }
+  .drop-title {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .drop-hint { font-size: 12px; color: var(--muted); }
+
+  .preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .preview-item {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1.5px solid var(--bone);
+  }
+  .preview-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .preview-item .remove-btn {
+    position: absolute; top: 4px; right: 4px;
+    width: 20px; height: 20px;
+    background: rgba(0,0,0,0.55);
+    border: none; border-radius: 50%;
+    color: white; font-size: 11px;
+    cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    line-height: 1;
+  }
+  .photo-count {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  /* ── PRIORIDAD ── */
+  .priority-opts {
+    display: flex;
+    gap: 10px;
+  }
+  .priority-opt { flex: 1; }
+  .priority-opt input[type="radio"] { display: none; }
+  .priority-opt label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 8px;
+    background: var(--paper);
+    border: 1.5px solid var(--bone);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink2);
+  }
+  .priority-opt input:checked + label {
+    border-color: var(--amber);
+    background: rgba(194,107,79,0.07);
+    color: var(--amber);
+  }
+  .priority-opt label .emoji { font-size: 20px; }
+
+  /* ── SUBMIT ── */
+  .submit-btn {
+    width: 100%;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .submit-btn:hover { background: var(--ink2); }
+  .submit-btn:active { transform: scale(0.99); }
+  .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* ── SUCCESS STATE ── */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .success-screen.visible { display: block; }
+  .success-icon { font-size: 52px; margin-bottom: 20px; }
+  .success-screen h2 {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+  .success-screen p { font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 380px; margin: 0 auto 28px; }
+  .wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #25D366;
+    color: white;
+    border-radius: 10px;
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .wa-btn:hover { opacity: 0.88; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    text-align: center;
+    padding: 16px;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wordmark">Tigre<span>.</span></div>
+  <div class="nav-tag">Solicitud de cambios</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-band">
+  <h1>¿Qué ajustamos hoy?</h1>
+  <p>Cuéntanos qué quieres cambiar en tu sitio. Adjunta fotos nuevas si las tienes y nuestro equipo lo resuelve.</p>
+</div>
+
+<!-- MAIN FORM -->
+<div class="container">
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">✅</div>
+    <h2>¡Solicitud enviada!</h2>
+    <p>Recibimos tus cambios. Te contactamos por WhatsApp en menos de 24 horas para confirmar y coordinar.</p>
+    <a class="wa-btn" id="waFollowup" href="#" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Enviar fotos por WhatsApp
+    </a>
+  </div>
+
+  <div id="formWrapper">
+
+    <!-- SECCIÓN 1: DATOS -->
+    <div class="section-label">Datos del cliente</div>
+    <div class="card">
+      <div class="field-row">
+        <div class="field">
+          <label>Nombre<span class="req">*</span></label>
+          <input type="text" id="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="field">
+          <label>Negocio<span class="req">*</span></label>
+          <input type="text" id="negocio" placeholder="Nombre del negocio" required>
+        </div>
+      </div>
+      <div class="field-row" style="margin-top:14px">
+        <div class="field">
+          <label>WhatsApp<span class="req">*</span></label>
+          <input type="tel" id="whatsapp" placeholder="624 000 0000" required>
+        </div>
+        <div class="field">
+          <label>Sitio web</label>
+          <input type="url" id="sitio" placeholder="https://tusitio.com">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 2: TIPO DE CAMBIOS -->
+    <div class="section-label">¿Qué quieres cambiar?</div>
+    <div class="card">
+      <div class="field">
+        <label>Tipo de cambios<span class="req">*</span> <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">(selecciona todos los que apliquen)</span></label>
+        <div class="check-grid" id="tiposCambio">
+          <label class="check-item"><input type="checkbox" value="textos"><div class="box"></div>📝 Textos / Contenido</label>
+          <label class="check-item"><input type="checkbox" value="fotos"><div class="box"></div>📸 Fotos / Imágenes</label>
+          <label class="check-item"><input type="checkbox" value="precios"><div class="box"></div>💰 Precios</label>
+          <label class="check-item"><input type="checkbox" value="servicios"><div class="box"></div>✨ Servicios</label>
+          <label class="check-item"><input type="checkbox" value="colores"><div class="box"></div>🎨 Colores / Diseño</label>
+          <label class="check-item"><input type="checkbox" value="contacto"><div class="box"></div>📞 Datos de contacto</label>
+          <label class="check-item"><input type="checkbox" value="secciones"><div class="box"></div>🔧 Agregar / quitar secciones</label>
+          <label class="check-item"><input type="checkbox" value="otro"><div class="box"></div>➕ Otro</label>
+        </div>
+      </div>
+
+      <div class="field" style="margin-top:20px">
+        <label>Descripción de los cambios<span class="req">*</span></label>
+        <textarea id="descripcion" placeholder="Describe qué quieres cambiar con el mayor detalle posible. Ej: 'En la sección de servicios, cambiar el precio del masaje relajante de $500 a $650 y agregar masaje de tejido profundo a $800.'"></textarea>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 3: FOTOS -->
+    <div class="section-label">Fotos nuevas (opcional)</div>
+    <div class="card">
+      <div class="field">
+        <label>Sube las fotos que quieres incluir en tu sitio</label>
+        <div class="drop-zone" id="dropZone">
+          <input type="file" id="fileInput" accept="image/*" multiple>
+          <div class="drop-icon">🖼️</div>
+          <div class="drop-title">Arrastra tus fotos aquí</div>
+          <div class="drop-hint">o haz clic para seleccionar · JPG, PNG, WEBP · máx. 10 fotos</div>
+        </div>
+        <div class="preview-grid" id="previewGrid"></div>
+        <div class="photo-count" id="photoCount"></div>
+      </div>
+      <div class="field">
+        <label>¿Dónde van las fotos?</label>
+        <textarea id="fotosNotas" placeholder="Ej: 'La foto 1 va en el hero, las fotos 2 y 3 en la galería, la 4 en la sección Sobre Mí.'" style="min-height:70px"></textarea>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 4: NOTAS -->
+    <div class="section-label">Notas adicionales</div>
+    <div class="card">
+      <div class="field">
+        <label>¿Algo más que quieras comentar?</label>
+        <textarea id="notas" placeholder="Cualquier cosa extra que quieras agregar..." style="min-height:80px"></textarea>
+      </div>
+    </div>
+
+    <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
+      Enviar solicitud →
+    </button>
+  </div><!-- /formWrapper -->
+
+</div><!-- /container -->
+
+<footer>Tigre Studio · San José del Cabo, BCS · tigrestudio.mx</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var files = [];
+
+  /* ── Drag & drop ── */
+  var dropZone = document.getElementById('dropZone');
+  var fileInput = document.getElementById('fileInput');
+
+  dropZone.addEventListener('dragover', function (e) {
+    e.preventDefault();
+    dropZone.classList.add('drag-over');
+  });
+  dropZone.addEventListener('dragleave', function () {
+    dropZone.classList.remove('drag-over');
+  });
+  dropZone.addEventListener('drop', function (e) {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    addFiles(Array.from(e.dataTransfer.files));
+  });
+  fileInput.addEventListener('change', function () {
+    addFiles(Array.from(fileInput.files));
+    fileInput.value = '';
+  });
+
+  function addFiles(newFiles) {
+    var imgs = newFiles.filter(function (f) { return f.type.startsWith('image/'); });
+    imgs.forEach(function (f) {
+      if (files.length >= 10) return;
+      files.push(f);
+      renderPreview(f, files.length - 1);
+    });
+    updateCount();
+  }
+
+  function renderPreview(file, idx) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var grid = document.getElementById('previewGrid');
+      var item = document.createElement('div');
+      item.className = 'preview-item';
+      item.dataset.idx = idx;
+      item.innerHTML = '<img src="' + e.target.result + '" alt="preview"><button class="remove-btn" onclick="removeFile(' + idx + ')">✕</button>';
+      grid.appendChild(item);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  window.removeFile = function (idx) {
+    files[idx] = null;
+    var item = document.querySelector('[data-idx="' + idx + '"]');
+    if (item) item.remove();
+    updateCount();
+  };
+
+  function updateCount() {
+    var active = files.filter(Boolean).length;
+    var el = document.getElementById('photoCount');
+    el.textContent = active > 0 ? active + ' foto' + (active > 1 ? 's' : '') + ' seleccionada' + (active > 1 ? 's' : '') : '';
+  }
+
+  /* ── Checkbox toggle ── */
+  document.querySelectorAll('.check-item').forEach(function (item) {
+    item.addEventListener('click', function () {
+      var cb = item.querySelector('input[type="checkbox"]');
+      cb.checked = !cb.checked;
+    });
+  });
+
+  /* ── Submit ── */
+  window.handleSubmit = function () {
+    var nombre    = document.getElementById('nombre').value.trim();
+    var negocio   = document.getElementById('negocio').value.trim();
+    var wa        = document.getElementById('whatsapp').value.trim();
+    var sitio     = document.getElementById('sitio').value.trim();
+    var desc      = document.getElementById('descripcion').value.trim();
+    var fotosN    = document.getElementById('fotosNotas').value.trim();
+    var notas     = document.getElementById('notas').value.trim();
+
+    if (!nombre || !negocio || !wa || !desc) {
+      alert('Por favor completa los campos obligatorios (*)');
+      return;
+    }
+
+    var tipos = [];
+    document.querySelectorAll('#tiposCambio input:checked').forEach(function (cb) {
+      tipos.push(cb.parentElement.textContent.trim());
+    });
+    if (!tipos.length) {
+      alert('Selecciona al menos un tipo de cambio');
+      return;
+    }
+
+    var activeFiles = files.filter(Boolean);
+
+    var lines = [
+      '📋 *Solicitud de Cambios — Tigre Studio*',
+      '',
+      '👤 *Cliente:* ' + nombre,
+      '🏢 *Negocio:* ' + negocio,
+      '📱 *WhatsApp:* ' + wa,
+      sitio ? '🌐 *Sitio:* ' + sitio : '',
+      '',
+      '🔧 *Tipo de cambios:*',
+      tipos.map(function (t) { return '  · ' + t; }).join('\n'),
+      '',
+      '📝 *Descripción:*',
+      desc,
+      fotosN ? '\n📸 *Notas de fotos:*\n' + fotosN : '',
+      activeFiles.length ? '\n🖼️ *Fotos adjuntas:* ' + activeFiles.length + ' (se envían en este chat)' : '',
+      notas ? '\n💬 *Notas adicionales:*\n' + notas : '',
+    ].filter(function (l) { return l !== ''; }).join('\n');
+
+    var waUrl = 'https://wa.me/526122017135?text=' + encodeURIComponent(lines);
+    document.getElementById('waFollowup').href = waUrl;
+
+    document.getElementById('formWrapper').style.display = 'none';
+    document.getElementById('successScreen').style.display = 'block';
+
+    if (activeFiles.length > 0) {
+      setTimeout(function () { window.open(waUrl, '_blank'); }, 400);
+    } else {
+      window.open(waUrl, '_blank');
+    }
+  };
+
+})();
+</script>
+</body>
+</html>
