@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CS Beauty · The Cabo Facialist</title>
+  <style>
+    :root {
+      --rose:       #8B3A52;
+      --rose-dark:  #6B2A3E;
+      --rose-light: #C4788E;
+      --cream:      #FAF6F1;
+      --cream-dark: #F0E8DF;
+      --charcoal:   #1C1C1E;
+      --text1:      #1C1C1E;
+      --text2:      #5A4A4F;
+      --text3:      #9A8A8F;
+      --gold:       #C9A96E;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Georgia, sans-serif;
+      background: var(--cream);
+      color: var(--text1);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 32px;
+      background: rgba(250,246,241,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(139,58,82,0.12);
+      transition: background 0.3s;
+    }
+    .nav-logo {
+      font-size: 18px; font-weight: 700; letter-spacing: 0.04em;
+      color: var(--rose-dark);
+    }
+    .nav-logo span { color: var(--gold); font-style: italic; font-weight: 400; font-size: 13px; display: block; letter-spacing: 0.12em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 13px; font-weight: 500; color: var(--text2); letter-spacing: 0.04em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--rose); }
+    .nav-cta {
+      background: var(--rose); color: white; border: none; padding: 10px 20px;
+      border-radius: 24px; font-size: 13px; font-weight: 600; cursor: pointer;
+      text-decoration: none; letter-spacing: 0.03em; transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--rose-dark); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('fotos/hero.jpg');
+      background-size: cover; background-position: center top;
+      background-color: var(--rose-dark);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(28,10,20,0.72) 0%, rgba(107,42,62,0.60) 60%, rgba(28,10,20,0.75) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; padding: 0 20px;
+      max-width: 700px;
+    }
+    .hero-badge {
+      display: inline-block; margin-bottom: 20px;
+      background: rgba(201,169,110,0.2); border: 1px solid rgba(201,169,110,0.5);
+      color: var(--gold); padding: 6px 18px; border-radius: 20px;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
+    }
+    .hero-title {
+      font-size: clamp(38px, 7vw, 68px);
+      font-weight: 300; color: white; line-height: 1.1;
+      letter-spacing: -0.01em; margin-bottom: 8px;
+    }
+    .hero-title strong { font-weight: 700; display: block; }
+    .hero-sub {
+      font-size: 16px; color: rgba(255,255,255,0.75);
+      margin-bottom: 36px; line-height: 1.6; font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+    .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--rose); color: white; padding: 14px 28px;
+      border-radius: 30px; font-size: 14px; font-weight: 600;
+      text-decoration: none; transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary:hover { background: var(--rose-dark); transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.35);
+      color: white; padding: 14px 28px; border-radius: 30px;
+      font-size: 14px; font-weight: 500; text-decoration: none;
+      backdrop-filter: blur(8px); transition: background 0.2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.2); }
+    .hero-stats {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 40px; z-index: 2;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-num { font-size: 26px; font-weight: 700; color: white; }
+    .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 80px 20px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--rose); font-weight: 600; margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(26px, 4vw, 40px); font-weight: 300; color: var(--text1);
+      line-height: 1.2; margin-bottom: 14px;
+    }
+    .section-title strong { font-weight: 700; }
+    .section-sub { font-size: 15px; color: var(--text2); line-height: 1.7; max-width: 560px; }
+
+    /* ── SOBRE MÍ ── */
+    .sobre {
+      background: white;
+    }
+    .sobre-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .sobre-img {
+      border-radius: 16px; overflow: hidden;
+      aspect-ratio: 4/5;
+      background: var(--cream-dark) url('fotos/galeria-1.jpg') center/cover no-repeat;
+      position: relative;
+    }
+    .sobre-img::after {
+      content: ''; position: absolute; bottom: 20px; right: -20px;
+      width: 120px; height: 120px; border-radius: 12px;
+      border: 4px solid white;
+      background: var(--rose) url('fotos/logo.png') center/contain no-repeat;
+    }
+    .sobre-text { display: flex; flex-direction: column; gap: 20px; }
+    .sobre-highlight {
+      background: var(--cream); border-left: 3px solid var(--rose);
+      padding: 14px 18px; border-radius: 0 8px 8px 0;
+      font-size: 15px; color: var(--text2); line-height: 1.6; font-style: italic;
+    }
+    .sobre-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      background: var(--cream-dark); border: 1px solid rgba(139,58,82,0.15);
+      color: var(--rose-dark); padding: 6px 14px; border-radius: 20px;
+      font-size: 12px; font-weight: 500;
+    }
+
+    /* ── SERVICIOS ── */
+    .servicios { background: var(--cream); }
+    .servicios-header { text-align: center; margin-bottom: 50px; }
+    .servicios-header .section-sub { margin: 0 auto; }
+    .servicios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    .servicio-card {
+      background: white; border-radius: 16px; overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: default; position: relative;
+    }
+    .servicio-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(139,58,82,0.12); }
+
+    .servicio-foto {
+      height: 200px;
+      background: var(--cream-dark) center/cover no-repeat;
+      position: relative;
+    }
+    .servicio-foto::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,10,20,0.5) 0%, transparent 50%);
+    }
+    #s-facial   .servicio-foto { background-image: url('fotos/servicio-facial.jpg'); }
+    #s-maquillaje .servicio-foto { background-image: url('fotos/servicio-maquillaje.jpg'); }
+    #s-brow     .servicio-foto { background-image: url('fotos/servicio-brow.jpg'); }
+    #s-lifting  .servicio-foto { background-image: linear-gradient(135deg, var(--rose-dark), var(--rose-light)); }
+    #s-peeling  .servicio-foto { background-image: linear-gradient(135deg, var(--gold), var(--rose)); }
+    #s-micro    .servicio-foto { background-image: linear-gradient(135deg, #4A3060, var(--rose-dark)); }
+
+    .servicio-body { padding: 18px 20px 20px; }
+    .servicio-nombre { font-size: 16px; font-weight: 700; color: var(--text1); margin-bottom: 6px; }
+    .servicio-desc {
+      font-size: 13px; color: var(--text2); line-height: 1.5;
+      max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+      margin-bottom: 0;
+    }
+    .servicio-card:hover .servicio-desc { max-height: 120px; margin-bottom: 10px; }
+    .servicio-precio {
+      display: inline-block; background: var(--cream); border: 1px solid rgba(139,58,82,0.2);
+      color: var(--rose-dark); padding: 4px 12px; border-radius: 16px;
+      font-size: 13px; font-weight: 700; margin-top: 10px;
+    }
+    .servicio-wa {
+      display: block; margin-top: 12px; text-align: center;
+      background: var(--rose); color: white; padding: 10px;
+      border-radius: 8px; font-size: 13px; font-weight: 600;
+      text-decoration: none; opacity: 0; transition: opacity 0.2s;
+    }
+    .servicio-card:hover .servicio-wa { opacity: 1; }
+
+    /* ── GALERÍA ── */
+    .galeria { background: white; }
+    .galeria-header { text-align: center; margin-bottom: 40px; }
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 12px;
+    }
+    .galeria-item {
+      border-radius: 12px; overflow: hidden;
+      background: var(--cream-dark) center/cover no-repeat;
+    }
+    .galeria-item:first-child { grid-row: span 2; min-height: 400px; }
+    .galeria-item:not(:first-child) { min-height: 190px; }
+    .galeria-item:nth-child(1) { background-image: url('fotos/galeria-1.jpg'); }
+    .galeria-item:nth-child(2) { background-image: url('fotos/galeria-2.jpg'); }
+    .galeria-item:nth-child(3) { background-image: url('fotos/galeria-3.jpg'); }
+    .galeria-item:nth-child(4) { background-image: url('fotos/servicio-facial.jpg'); }
+    .galeria-item:nth-child(5) { background-image: url('fotos/servicio-maquillaje.jpg'); }
+
+    /* ── RESEÑAS ── */
+    .resenas { background: var(--charcoal); padding: 80px 20px; }
+    .resenas .section-label { color: var(--gold); }
+    .resenas .section-title { color: white; }
+    .resenas-header { text-align: center; margin-bottom: 48px; }
+    .resenas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .resena-card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px; padding: 24px;
+    }
+    .resena-stars { color: var(--gold); font-size: 14px; margin-bottom: 12px; }
+    .resena-texto { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.65; margin-bottom: 16px; font-style: italic; }
+    .resena-autor { font-size: 13px; font-weight: 600; color: white; }
+    .resena-sub { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+    .rating-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,169,110,0.15); border: 1px solid rgba(201,169,110,0.3);
+      padding: 8px 18px; border-radius: 20px; margin-bottom: 20px;
+      font-size: 15px; font-weight: 700; color: var(--gold);
+    }
+
+    /* ── CONTACTO ── */
+    .contacto { background: var(--rose-dark); padding: 80px 20px; }
+    .contacto .section-label { color: rgba(201,169,110,0.8); }
+    .contacto .section-title { color: white; }
+    .contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 40px; }
+    .contacto-info { display: flex; flex-direction: column; gap: 20px; }
+    .contacto-item { display: flex; gap: 14px; align-items: flex-start; }
+    .contacto-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .contacto-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; }
+    .contacto-val { font-size: 15px; color: white; font-weight: 500; margin-top: 2px; }
+
+    .form-card {
+      background: white; border-radius: 16px; padding: 32px;
+    }
+    .form-title { font-size: 18px; font-weight: 700; color: var(--text1); margin-bottom: 20px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid #E8E0E4; border-radius: 8px;
+      font-size: 14px; font-family: inherit; color: var(--text1);
+      background: #FDFAF9; transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--rose);
+    }
+    textarea { resize: none; }
+    .form-submit {
+      width: 100%; padding: 14px; background: var(--rose); color: white;
+      border: none; border-radius: 10px; font-size: 14px; font-weight: 700;
+      cursor: pointer; font-family: inherit; transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--rose-dark); }
+
+    .wa-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 999;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; font-size: 28px;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal); padding: 24px 20px;
+      text-align: center; font-size: 12px; color: rgba(255,255,255,0.35);
+    }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero-stats { gap: 24px; }
+      .sobre-grid, .contacto-grid { grid-template-columns: 1fr; }
+      .sobre-img { aspect-ratio: 3/2; }
+      .sobre-img::after { display: none; }
+      .servicios-grid { grid-template-columns: 1fr 1fr; }
+      .resenas-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .galeria-item:first-child { grid-row: span 1; grid-column: span 2; }
+    }
+    @media (max-width: 480px) {
+      .servicios-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr; }
+      .galeria-item:first-child { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- WhatsApp flotante -->
+  <a class="wa-float" href="https://wa.me/522221258551" target="_blank" title="Escríbenos por WhatsApp">💬</a>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      CS Beauty
+      <span>The Cabo Facialist</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#sobre">Sobre mí</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="https://wa.me/522221258551" class="nav-cta" target="_blank">Agendar cita</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content reveal">
+      <div class="hero-badge">✨ San José del Cabo</div>
+      <h1 class="hero-title">
+        Tu piel merece
+        <strong>lo mejor</strong>
+      </h1>
+      <p class="hero-sub">Faciales personalizados, maquillaje profesional y tratamientos de belleza. Resultados visibles desde la primera sesión.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/522221258551" class="btn-primary" target="_blank">💬 Agendar por WhatsApp</a>
+        <a href="#servicios" class="btn-outline">Ver servicios</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">5.0 ⭐</div>
+        <div class="hero-stat-label">Calificación</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Satisfacción</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">SJC</div>
+        <div class="hero-stat-label">Los Cabos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section class="sobre" id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="sobre-img reveal"></div>
+        <div class="sobre-text reveal">
+          <div>
+            <div class="section-label">Sobre mí</div>
+            <h2 class="section-title">Hola, soy <strong>Cynthia</strong></h2>
+          </div>
+          <p class="section-sub">Soy cosmetóloga especializada en cuidado de la piel y maquillaje profesional. Mi pasión es ayudarte a sentirte radiante y segura con tu piel.</p>
+          <div class="sobre-highlight">
+            "Cada piel es única. Mi trabajo es entenderte y diseñar el tratamiento perfecto para ti."
+          </div>
+          <div class="sobre-chips">
+            <span class="chip">✨ Facials personalizados</span>
+            <span class="chip">💄 Maquillaje profesional</span>
+            <span class="chip">🌿 Productos premium</span>
+            <span class="chip">📍 San José del Cabo</span>
+          </div>
+          <a href="https://wa.me/522221258551" class="btn-primary" target="_blank" style="align-self:flex-start;">💬 Escríbeme</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios">
+    <div class="container">
+      <div class="servicios-header reveal">
+        <div class="section-label">Lo que ofrezco</div>
+        <h2 class="section-title">Mis <strong>servicios</strong></h2>
+        <p class="section-sub">Tratamientos diseñados para cada tipo de piel. Pasa el cursor para ver más detalles.</p>
+      </div>
+      <div class="servicios-grid">
+
+        <div class="servicio-card reveal" id="s-facial">
+          <div class="servicio-foto"></div>
+          <div class="servicio-body">
+            <div class="servicio-nombre">Facial Personalizado</div>
+            <div class="servicio-desc">Diagnóstico de piel + limpieza profunda + hidratación + mascarilla según tu tipo de piel. Resultados inmediatos.</div>
+            <div class="servicio-precio">Desde $800 MXN</div>
+            <a class="servicio-wa" href="https://wa.me/522221258551?text=Hola%20Cynthia!%20Quiero%20agendar%20un%20Facial%20Personalizado%20😊" target="_blank">💬 Agendar este servicio</a>
+          </div>
+        </div>
+
+        <div class="servicio-card reveal" id="s-maquillaje">
+          <div class="servicio-foto"></div>
+          <div class="servicio-body">
+            <div class="servicio-nombre">Maquillaje Profesional</div>
+            <div class="servicio-desc">Para eventos, bodas, sesiones de fotos o el día a día. Maquillaje duradero con técnica airbrush o convencional.</div>
+            <div class="servicio-precio">Desde $1,200 MXN</div>
+            <a class="servicio-wa" href="https://wa.me/522221258551?text=Hola%20Cynthia!%20Quiero%20informaci%C3%B3n%20sobre%20Maquillaje%20Profesional%20💄" target="_blank">💬 Agendar este servicio</a>
+          </div>
+        </div>
+
+        <div class="servicio-card reveal" id="s-brow">
+          <div class="servicio-foto"></div>
+          <div class="servicio-body">
+            <div class="servicio-nombre">Diseño de Cejas</div>
+            <div class="servicio-desc">Diseño y depilación personalizada según la forma de tu rostro. Resultado natural y definido que dura semanas.</div>
+            <div class="servicio-precio">Desde $350 MXN</div>
+            <a class="servicio-wa" href="https://wa.me/522221258551?text=Hola%20Cynthia!%20Quiero%20agendar%20un%20Dise%C3%B1o%20de%20Cejas%20✨" target="_blank">💬 Agendar este servicio</a>
+          </div>
+        </div>
+
+        <div class="servicio-card reveal" id="s-lifting">
+          <div class="servicio-foto"></div>
+          <div class="servicio-body">
+            <div class="servicio-nombre">Facial Anti-Edad</div>
+            <div class="servicio-desc">Tratamiento de lifting y reafirmación con activos de alta concentración. Reduce líneas de expresión y mejora firmeza.</div>
+            <div class="servicio-precio">Desde $1,100 MXN</div>
+            <a class="servicio-wa" href="https://wa.me/522221258551?text=Hola%20Cynthia!%20Me%20interesa%20el%20Facial%20Anti-Edad%20🌟" target="_blank">💬 Agendar este servicio</a>
+          </div>
+        </div>
+
+        <div class="servicio-card reveal" id="s-peeling">
+          <div class="servicio-foto"></div>
+          <div class="servicio-body">
+            <div class="servicio-nombre">Peeling & Vitamina C</div>
+            <div class="servicio-desc">Exfoliación química suave + vitamina C para unificar tono, reducir manchas y lograr un glow natural. Perfecto para Los Cabos.</div>
+            <div class="servicio-precio">Desde $950 MXN</div>
+            <a class="servicio-wa" href="https://wa.me/522221258551?text=Hola%20Cynthia!%20Quiero%20m%C3%A1s%20info%20sobre%20Peeling%20%26%20Vitamina%20C%20✨" target="_blank">💬 Agendar este servicio</a>
+          </div>
+        </div>
+
+        <div class="servicio-card reveal" id="s-micro">
+          <div class="servicio-foto"></div>
+          <div class="servicio-body">
+            <div class="servicio-nombre">Micropigmentación</div>
+            <div class="servicio-desc">Cejas, labios o delineado permanente. Técnica semipermanente para un look natural que dura hasta 2 años.</div>
+            <div class="servicio-precio">Desde $2,500 MXN</div>
+            <a class="servicio-wa" href="https://wa.me/522221258551?text=Hola%20Cynthia!%20Quiero%20informaci%C3%B3n%20sobre%20Micropigmentaci%C3%B3n%20💋" target="_blank">💬 Agendar este servicio</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section class="galeria" id="galeria">
+    <div class="container">
+      <div class="galeria-header reveal">
+        <div class="section-label">Resultados reales</div>
+        <h2 class="section-title">Mi <strong>trabajo</strong></h2>
+      </div>
+      <div class="galeria-grid reveal">
+        <div class="galeria-item"></div>
+        <div class="galeria-item"></div>
+        <div class="galeria-item"></div>
+        <div class="galeria-item"></div>
+        <div class="galeria-item"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section class="resenas" id="resenas">
+    <div class="container">
+      <div class="resenas-header reveal">
+        <div class="section-label">Lo que dicen mis clientes</div>
+        <h2 class="section-title" style="color:white;">Reseñas <strong>verificadas</strong></h2>
+        <div class="rating-badge">⭐ 5.0 · Google Reviews</div>
+      </div>
+      <div class="resenas-grid">
+        <div class="resena-card reveal">
+          <div class="resena-stars">★★★★★</div>
+          <p class="resena-texto">"Cynthia es increíble. Mi piel jamás había lucido tan bien. El facial fue muy relajante y el resultado fue notorio desde la primera sesión."</p>
+          <div class="resena-autor">Cliente satisfecha</div>
+          <div class="resena-sub">San José del Cabo · Google</div>
+        </div>
+        <div class="resena-card reveal">
+          <div class="resena-stars">★★★★★</div>
+          <p class="resena-texto">"El maquillaje de mi boda quedó perfecto. Durísimo todo el día y Cynthia me hizo sentir cómoda en todo momento. ¡Súper recomendada!"</p>
+          <div class="resena-autor">Novia feliz</div>
+          <div class="resena-sub">Los Cabos · Google</div>
+        </div>
+        <div class="resena-card reveal">
+          <div class="resena-stars">★★★★★</div>
+          <p class="resena-texto">"Vine por el diseño de cejas y salí con un facial también 😄. El ambiente es muy agradable y Cynthia es muy profesional. Ya tengo cita para el mes que entra."</p>
+          <div class="resena-autor">Cliente frecuente</div>
+          <div class="resena-sub">San José del Cabo · Google</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contacto" id="contacto">
+    <div class="container">
+      <div class="section-label">Agenda tu cita</div>
+      <h2 class="section-title">Hablemos <strong>hoy</strong></h2>
+      <div class="contacto-grid">
+        <div class="contacto-info reveal">
+          <div class="contacto-item">
+            <div class="contacto-icon">📍</div>
+            <div>
+              <div class="contacto-label">Ubicación</div>
+              <div class="contacto-val">San José del Cabo, BCS</div>
+            </div>
+          </div>
+          <div class="contacto-item">
+            <div class="contacto-icon">📱</div>
+            <div>
+              <div class="contacto-label">WhatsApp</div>
+              <div class="contacto-val">222 125 8551</div>
+            </div>
+          </div>
+          <div class="contacto-item">
+            <div class="contacto-icon">🕐</div>
+            <div>
+              <div class="contacto-label">Horario</div>
+              <div class="contacto-val">Lun–Sáb · 9am–7pm</div>
+            </div>
+          </div>
+          <a href="https://wa.me/522221258551" class="btn-primary" target="_blank" style="align-self:flex-start; margin-top:10px;">
+            💬 Escribir por WhatsApp
+          </a>
+        </div>
+        <div class="form-card reveal">
+          <div class="form-title">Solicita tu cita</div>
+          <div class="form-group">
+            <label>Tu nombre</label>
+            <input type="text" placeholder="Nombre completo" />
+          </div>
+          <div class="form-group">
+            <label>Servicio de interés</label>
+            <select>
+              <option>Facial Personalizado</option>
+              <option>Maquillaje Profesional</option>
+              <option>Diseño de Cejas</option>
+              <option>Facial Anti-Edad</option>
+              <option>Peeling & Vitamina C</option>
+              <option>Micropigmentación</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Teléfono / WhatsApp</label>
+            <input type="tel" placeholder="624 000 0000" />
+          </div>
+          <div class="form-group">
+            <label>Mensaje (opcional)</label>
+            <textarea rows="3" placeholder="¿Alguna pregunta o preferencia?"></textarea>
+          </div>
+          <button class="form-submit" onclick="window.open('https://wa.me/522221258551?text=Hola%20Cynthia!%20Quiero%20agendar%20una%20cita%20en%20CS%20Beauty%20%F0%9F%92%86','_blank')">
+            💬 Enviar por WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    CS Beauty · The Cabo Facialist · San José del Cabo, BCS · 222 125 8551
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Nav scroll effect
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.background =
+        window.scrollY > 60 ? 'rgba(250,246,241,0.98)' : 'rgba(250,246,241,0.92)';
+    });
+  </script>
+</body>
+</html>
