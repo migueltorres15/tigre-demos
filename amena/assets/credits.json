@@ -1,0 +1,24 @@
+{
+  "team1": {
+    "src": "assets/img/team1.jpg",
+    "title": "IT job 2",
+    "creator": "Hampton Roads Partnership",
+    "creator_url": "https://www.flickr.com/photos/39491352@N05",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/39491352@N05/5352232970",
+    "source": "flickr"
+  },
+  "team2": {
+    "src": "assets/img/team2.jpg",
+    "title": "adult, africa, african, black, care, cheerful, clinic, doctor,",
+    "creator": "www.ilmicrofono.it",
+    "creator_url": "https://www.flickr.com/photos/115089924@N02",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/115089924@N02/16068674648",
+    "source": "flickr"
+  }
+}
