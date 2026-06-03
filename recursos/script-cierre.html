@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Script de Cierre · Tigre Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',sans-serif;background:#0f0f0f;color:#f0f0f0;line-height:1.6;padding:0 0 60px;}
+  nav{background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:14px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;}
+  nav span{font-weight:700;font-size:15px;color:#fff;}
+  nav small{color:#666;font-size:12px;}
+  .container{max-width:780px;margin:0 auto;padding:0 20px;}
+  h1{font-size:22px;font-weight:700;color:#fff;padding:32px 0 8px;}
+  .subtitle{font-size:13px;color:#666;margin-bottom:32px;}
+  .phase{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;margin-bottom:16px;overflow:hidden;}
+  .phase-header{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid #2a2a2a;cursor:pointer;user-select:none;}
+  .phase-num{background:#7C3AED;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+  .phase-title{font-weight:600;font-size:14px;color:#fff;}
+  .phase-time{margin-left:auto;font-size:11px;color:#666;background:#2a2a2a;padding:3px 8px;border-radius:20px;}
+  .phase-body{padding:18px;}
+  .script-box{background:#0f0f0f;border:1px solid #2a2a2a;border-left:3px solid #7C3AED;border-radius:8px;padding:14px 16px;font-size:13px;color:#e0e0e0;line-height:1.75;margin-bottom:12px;white-space:pre-wrap;}
+  .tip{background:#1a2a1a;border:1px solid #2a4a2a;border-radius:8px;padding:10px 14px;font-size:12px;color:#6dba6d;margin-bottom:12px;}
+  .tip strong{color:#8eda8e;}
+  .objection{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:10px;margin-bottom:10px;overflow:hidden;}
+  .obj-trigger{background:#2a1a1a;border-bottom:1px solid #2a2a2a;padding:10px 14px;font-size:13px;color:#ff8080;font-style:italic;}
+  .obj-response{padding:12px 14px;font-size:13px;color:#e0e0e0;line-height:1.7;white-space:pre-wrap;}
+  .payment-box{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px;}
+  .pay-card{background:#1a1a2a;border:1px solid #2a2a3a;border-radius:10px;padding:14px;text-align:center;}
+  .pay-card .pay-icon{font-size:24px;margin-bottom:6px;}
+  .pay-card h4{font-size:13px;font-weight:600;color:#fff;margin-bottom:4px;}
+  .pay-card a{display:block;background:#7C3AED;color:#fff;border-radius:6px;padding:7px;font-size:11px;font-weight:600;text-decoration:none;margin-top:8px;}
+  .pay-card a:hover{background:#6d28d9;}
+  .section-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#666;margin:28px 0 12px;}
+  .badge{display:inline-flex;align-items:center;gap:4px;background:#2a2a2a;border-radius:20px;padding:3px 10px;font-size:11px;color:#aaa;margin:0 4px 4px 0;}
+  .badge.hot{background:#3a1a1a;color:#ff8080;}
+  .badge.ok{background:#1a3a1a;color:#6dba6d;}
+  @media(max-width:600px){.payment-box{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <span>⚡ Tigre Studio</span>
+  <small>· Script de Cierre v1.0</small>
+</nav>
+
+<div class="container">
+  <h1>🎯 Script de Cierre</h1>
+  <p class="subtitle">Demo de 15-20 min · Meta: pago antes de colgar</p>
+
+  <!-- FASE 1 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">1</div>
+      <div class="phase-title">El Demo</div>
+      <div class="phase-time">10 min</div>
+    </div>
+    <div class="phase-body">
+      <div class="tip"><strong>💡 Objetivo:</strong> Que sientan el sitio como suyo. Muéstralo por secciones, deja que reaccionen.</div>
+      <div class="script-box">"¿Qué te parece hasta aquí? ¿Te imaginas a tus clientes viendo esto?"</div>
+      <div class="tip"><strong>Escucha.</strong> No interrumpas. Que hablen y se vendan solos.</div>
+    </div>
+  </div>
+
+  <!-- FASE 2 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">2</div>
+      <div class="phase-title">La Oferta de Lanzamiento</div>
+      <div class="phase-time">2 min</div>
+    </div>
+    <div class="phase-body">
+      <div class="tip"><strong>💡 Cuándo:</strong> Cuando detectes emoción positiva — "me gusta", "qué bonito", "cómo lo hiciste".</div>
+      <div class="script-box">"Mira, te voy a ser muy directo contigo.
+
+Estoy en la etapa de apertura oficial de Tigre Studio y estoy eligiendo los primeros clientes de forma muy selectiva — porque cada sitio que hago va directo a mi portfolio.
+
+Una página como esta en el mercado vale entre $15,000 y $20,000 pesos. Yo la tengo construida para ti, lista para publicarse hoy mismo.
+
+Para los primeros 5 clientes del mes tengo un precio de apertura de $2,500 pesos que incluye todo: el diseño, el primer año de dominio, el hosting, y los ajustes de contenido. No tienes que pagar nada por separado.
+
+Pero hay una condición: necesito que hagamos el proceso hoy. No porque te quiera presionar — sino porque si no cerramos hoy, ese lugar lo toma el siguiente cliente que tengo en agenda, y cuando vuelvas tendría que cobrarte el precio regular."</div>
+    </div>
+  </div>
+
+  <!-- FASE 3 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">3</div>
+      <div class="phase-title">El Cierre — Sin preguntar</div>
+      <div class="phase-time">1 min</div>
+    </div>
+    <div class="phase-body">
+      <div class="tip"><strong>⚠️ NO preguntes "¿qué decides?"</strong> — avanza asumiendo que sí.</div>
+      <div class="script-box">"¿Tienes Mercado Pago o prefieres transferencia SPEI? Te mando los datos ahorita por WhatsApp."</div>
+      <div class="tip"><strong>Silencio.</strong> No llenes el silencio. El que habla primero pierde.</div>
+      <div class="script-box">"¿Cómo quieres que se llame el dominio? Algo como [negocio].com — en cuanto me hagas la transferencia lo registro en 10 minutos y te mando el comprobante."</div>
+    </div>
+  </div>
+
+  <!-- OBJECIONES -->
+  <div class="section-label">🛡️ Manejo de Objeciones</div>
+
+  <div class="objection">
+    <div class="obj-trigger">"Déjame pensarlo..."</div>
+    <div class="obj-response">"Claro, respeto eso. ¿Qué es lo que necesitas pensar? A veces puedo resolver la duda ahora mismo."
+
+[Si insisten]: "Te entiendo. Lo único que te pido es que si decides que no, me lo digas hoy — porque si no, el lugar lo tengo que dar al siguiente. ¿Me puedes dar una respuesta hoy mismo?"</div>
+  </div>
+
+  <div class="objection">
+    <div class="obj-trigger">"Voy a hablar con mi socio/pareja..."</div>
+    <div class="obj-response">"Perfecto, ¿están disponibles ahorita? Son 5 minutos, los incluyo en la llamada y listo. Así no tienes que explicar todo de nuevo."
+
+[Si no disponibles]: "¿Cuándo hablas con él/ella? Puedo hacer una segunda llamada de 10 minutos con los dos."</div>
+  </div>
+
+  <div class="objection">
+    <div class="obj-trigger">"No traigo dinero ahorita..."</div>
+    <div class="obj-response">"No hay problema, te mando el link de Mercado Pago — puedes pagar con tarjeta en 3 meses sin intereses desde $833 pesos al mes. ¿Tienes tarjeta a la mano?"</div>
+  </div>
+
+  <div class="objection">
+    <div class="obj-trigger">"¿Y si no me gusta el resultado?"</div>
+    <div class="obj-response">"Ya tienes el sitio frente a ti — eso te da toda la información para decidir. Además te incluyo una ronda de cambios: si algo no queda como lo necesitas me lo dices y lo ajusto. Y si al final sientes que no valió la inversión, te devuelvo tu dinero."</div>
+  </div>
+
+  <div class="objection">
+    <div class="obj-trigger">"¿Es una estafa? Hay muchas en línea..."</div>
+    <div class="obj-response">"Tienes toda la razón, y por eso te digo: el sitio ya existe, lo puedes ver ahora mismo. No te estoy pidiendo dinero por algo que te voy a entregar en 3 meses. Lo único que falta es registrar tu dominio — y eso lo hago en 10 minutos con tu transferencia. Te mando el comprobante del dominio al momento."</div>
+  </div>
+
+  <!-- COBROS -->
+  <div class="section-label">💳 Links de Cobro Rápido</div>
+  <div class="payment-box">
+    <div class="pay-card">
+      <div class="pay-icon">🟢</div>
+      <h4>Mercado Pago</h4>
+      <small style="color:#888;font-size:11px;">Tarjeta · OXXO · 3 MSI</small>
+      <a href="https://link.mercadopago.com.mx/TULINK" target="_blank">Cobrar $2,500 MXN →</a>
+    </div>
+    <div class="pay-card">
+      <div class="pay-icon">🔵</div>
+      <h4>Stripe</h4>
+      <small style="color:#888;font-size:11px;">Tarjeta internacional</small>
+      <a href="https://buy.stripe.com/TULINK" target="_blank">Cobrar $333 USD →</a>
+    </div>
+    <div class="pay-card">
+      <div class="pay-icon">🟡</div>
+      <h4>PayPal</h4>
+      <small style="color:#888;font-size:11px;">Internacional</small>
+      <a href="https://paypal.me/TUUSUARIO" target="_blank">Cobrar por PayPal →</a>
+    </div>
+  </div>
+
+  <!-- FOLLOW UP -->
+  <div class="section-label">📩 Follow-up — Leads que dijeron sí pero no pagaron</div>
+  <div class="phase">
+    <div class="phase-body">
+      <div class="tip"><strong>Día 1 (mismo día):</strong></div>
+      <div class="script-box">"Hola [nombre], aquí te mando mis datos para que reserves tu lugar: [link Mercado Pago / SPEI]. El precio de apertura cierra esta semana."</div>
+      <div class="tip"><strong>Día 2 (sin respuesta):</strong></div>
+      <div class="script-box">"Hola [nombre], solo para avisarte — ya solo me quedan 2 lugares disponibles esta semana a este precio. ¿Quieres cerrarlo hoy?"</div>
+      <div class="tip"><strong>Día 4:</strong></div>
+      <div class="script-box">"[Nombre], el precio de apertura sube el lunes. Si quieres asegurar los $2,500 escríbeme hoy."</div>
+    </div>
+  </div>
+
+  <!-- PRECIOS -->
+  <div class="section-label">💰 Precios</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
+    <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:10px;padding:16px;">
+      <div style="font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">México</div>
+      <div style="font-size:28px;font-weight:700;color:#7C3AED;">$2,500 MXN</div>
+      <div style="font-size:11px;color:#666;margin-top:4px;">Anchor: $15,000 MXN</div>
+      <div style="font-size:11px;color:#6dba6d;margin-top:8px;">✓ Diseño · Dominio · Hosting · Cambios</div>
+    </div>
+    <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:10px;padding:16px;">
+      <div style="font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">US / Canada</div>
+      <div style="font-size:28px;font-weight:700;color:#7C3AED;">$333 USD</div>
+      <div style="font-size:11px;color:#666;margin-top:4px;">Anchor: $1,500 USD</div>
+      <div style="font-size:11px;color:#6dba6d;margin-top:8px;">✓ Design · Domain · Hosting · Revisions</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
