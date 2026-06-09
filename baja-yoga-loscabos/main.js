@@ -194,29 +194,66 @@
     var next = document.getElementById('bookNext');
     if (!container || !label) return;
 
-    // Schedule: 0=Sun,1=Mon,2=Tue,3=Wed,4=Thu,5=Fri,6=Sat
-    var schedule = {
+    // ── Google Sheets CSV URL ──────────────────────────────
+    // Reemplaza SHEET_ID con el ID de tu Google Sheet publicado
+    var SHEET_CSV_URL = 'SHEET_URL_AQUI';
+
+    // Días en español → número JS (0=Dom)
+    var DIA_MAP = {
+      'Domingo':0,'Lunes':1,'Martes':2,'Miércoles':3,
+      'Miercoles':3,'Jueves':4,'Viernes':5,'Sábado':6,'Sabado':6
+    };
+
+    // Horario de respaldo (mientras se carga o si falla el Sheet)
+    var fallbackSchedule = {
       1: [
         { time: '8:45 am', end: '10:00 am', name: 'Alineación Restaurativo', instructor: 'Karuna Aguilar' },
         { time: '7:00 pm', end: '8:00 pm',  name: 'Ashtanga Yoga',           instructor: 'Paco Zatarain' }
       ],
       2: [
-        { time: '7:30 am', end: '8:30 am', name: 'Ashtanga Yoga',           instructor: 'Alu Segovia' },
+        { time: '7:30 am', end: '8:30 am',  name: 'Ashtanga Yoga',           instructor: 'Alu Segovia' },
         { time: '8:45 am', end: '10:00 am', name: 'Alineación Restaurativo', instructor: 'Karuna Aguilar' },
         { time: '7:00 pm', end: '8:00 pm',  name: 'Alineación Restaurativo', instructor: 'Pao Martínez' }
       ],
-      3: [
-        { time: '7:00 pm', end: '8:00 pm', name: 'Ashtanga Yoga', instructor: 'Paco Zatarain' }
-      ],
+      3: [{ time: '7:00 pm', end: '8:00 pm', name: 'Ashtanga Yoga', instructor: 'Paco Zatarain' }],
       4: [
-        { time: '7:30 am', end: '8:30 am', name: 'Vinyasa Yoga',              instructor: 'Ana Ramírez' },
-        { time: '9:00 am', end: '10:00 am', name: 'Ashtanga Yoga',            instructor: 'Alu Segovia' },
-        { time: '7:00 pm', end: '8:30 pm',  name: 'Restaurativo + Vinyasa',   instructor: 'Pau Ruiz' }
+        { time: '7:30 am', end: '8:30 am',  name: 'Vinyasa Yoga',           instructor: 'Ana Ramírez' },
+        { time: '9:00 am', end: '10:00 am', name: 'Ashtanga Yoga',          instructor: 'Alu Segovia' },
+        { time: '7:00 pm', end: '8:30 pm',  name: 'Restaurativo + Vinyasa', instructor: 'Pau Ruiz' }
       ],
-      5: [
-        { time: '7:30 am', end: '8:30 am', name: 'Vinyasa Yoga', instructor: 'Rosa Vejar' }
-      ]
+      5: [{ time: '7:30 am', end: '8:30 am', name: 'Vinyasa Yoga', instructor: 'Rosa Vejar' }]
     };
+
+    var schedule = fallbackSchedule;
+
+    function parseCSV(text) {
+      var lines = text.trim().split('\n');
+      var result = {};
+      for (var i = 1; i < lines.length; i++) {
+        var cols = lines[i].split(',').map(function(c){ return c.trim().replace(/^"|"$/g,''); });
+        if (cols.length < 5 || !cols[0]) continue;
+        var dow = DIA_MAP[cols[0]];
+        if (dow === undefined) continue;
+        if (!result[dow]) result[dow] = [];
+        result[dow].push({ time: cols[1], end: cols[2], name: cols[3], instructor: cols[4] });
+      }
+      return result;
+    }
+
+    // Cargar desde Google Sheets si hay URL configurada
+    if (SHEET_CSV_URL !== 'SHEET_URL_AQUI') {
+      fetch(SHEET_CSV_URL)
+        .then(function(r){ return r.text(); })
+        .then(function(text){
+          var parsed = parseCSV(text);
+          if (Object.keys(parsed).length > 0) {
+            schedule = parsed;
+            render();
+          }
+        })
+        .catch(function(){});
+    }
+    var schedule = schedule;
 
     var DAYS_ES = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
     var MONTHS_ES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
