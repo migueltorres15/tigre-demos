@@ -196,7 +196,7 @@
 
     // ── Google Sheets CSV URL ──────────────────────────────
     // Reemplaza SHEET_ID con el ID de tu Google Sheet publicado
-    var SHEET_CSV_URL = 'SHEET_URL_AQUI';
+    var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1L4Wh2K0iQym874S4LlxabirvSk8Jo--KOveaug6ii8Q/export?format=csv&gid=0';
 
     // Días en español → número JS (0=Dom)
     var DIA_MAP = {
