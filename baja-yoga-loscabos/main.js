@@ -196,7 +196,7 @@
 
     // ── Google Sheets CSV URL ──────────────────────────────
     // Reemplaza SHEET_ID con el ID de tu Google Sheet publicado
-    var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1L4Wh2K0iQym874S4LlxabirvSk8Jo--KOveaug6ii8Q/export?format=csv&gid=0';
+    var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSQZvBQtTFc0P4VoA9ykLvMpJAONcFno946-1lV1XQv6QoOBU4p2zkxdmTAwSs4gDRpoSpIv8lnynDw/pub?gid=752633070&single=true&output=csv';
 
     // Días en español → número JS (0=Dom)
     var DIA_MAP = {
